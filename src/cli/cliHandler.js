@@ -1,5 +1,6 @@
 import { stdin, stdout } from 'node:process';
 import { createInterface } from 'node:readline';
+import listDirContents from '../dir-operations/listDirContents.js';
 
 const cliHandler = (username) => {
   const rl = createInterface({
@@ -7,10 +8,17 @@ const cliHandler = (username) => {
     output: stdout
   });
 
-  const onUserInput = (input) => {
-    if (input.trim() === '.exit') {
+  const onUserInput = async(input) => {
+    const command = input.trim();
+
+    if (command === '.exit') {
       rl.close();
     } else {
+      switch (command) {
+        case 'ls':
+          await listDirContents();
+          break;
+      }
       rl.prompt();
     }
   };
