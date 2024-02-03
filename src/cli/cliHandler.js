@@ -3,6 +3,7 @@ import { createInterface } from 'node:readline';
 import listDirContents from '../dir-operations/listDirContents.js';
 import goUp from '../dir-operations/goUp.js';
 import changeDir from '../dir-operations/changeDir.js';
+import read from '../file-operations/read.js';
 
 const cliHandler = (username) => {
   const rl = createInterface({
@@ -29,6 +30,13 @@ const cliHandler = (username) => {
           } else {
             console.log('Invalid input. Please specify a directory path');
           }
+          break;
+        case 'cat':
+          if (args.length) {
+            await read(args.join(' '));
+          } else {
+            console.log('Invalid input. Please specify a file path');
+          };
           break;
       }
       rl.prompt();
