@@ -14,6 +14,7 @@ import printHost from '../system-info/printHost.js';
 import printHomeDir from '../system-info/printHomeDir.js';
 import printSystemUserName from '../system-info/printSystemUserName.js';
 import printCPUArch from '../system-info/printCPUArch.js';
+import calcHash from '../hash/calsHash.js';
 
 const cliHandler = (username) => {
   const rl = createInterface({
@@ -112,6 +113,14 @@ const cliHandler = (username) => {
                 break;
             }
           })
+          break;
+
+        case 'hash':
+          if (args.length) {
+            await calcHash(args.join(' '));
+          } else {
+            console.log('Invalid input. Please specify a file path');
+          }
           break;
       }
       rl.prompt();
