@@ -4,6 +4,7 @@ import listDirContents from '../dir-operations/listDirContents.js';
 import goUp from '../dir-operations/goUp.js';
 import changeDir from '../dir-operations/changeDir.js';
 import read from '../file-operations/read.js';
+import create from '../file-operations/create.js';
 
 const cliHandler = (username) => {
   const rl = createInterface({
@@ -36,6 +37,13 @@ const cliHandler = (username) => {
             await read(args.join(' '));
           } else {
             console.log('Invalid input. Please specify a file path');
+          };
+          break;
+        case 'add':
+          if (args.length) {
+            await create(args.join(' '));
+          } else {
+            console.log('Invalid input. Please specify a file name');
           };
           break;
       }
