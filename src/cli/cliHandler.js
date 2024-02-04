@@ -15,6 +15,8 @@ import printHomeDir from '../system-info/printHomeDir.js';
 import printSystemUserName from '../system-info/printSystemUserName.js';
 import printCPUArch from '../system-info/printCPUArch.js';
 import calcHash from '../hash/calsHash.js';
+import compress from '../zip/compress.js';
+import decompress from '../zip/decompress.js';
 
 const cliHandler = (username) => {
   const rl = createInterface({
@@ -121,6 +123,22 @@ const cliHandler = (username) => {
           } else {
             console.log('Invalid input. Please specify a file path');
           }
+          break;
+
+        case 'compress':
+          if (args.length >= 2) {
+            await compress(args[0], args[1]);
+          } else {
+            console.log('Invalid input. Please specify both the source file path and destination file path');
+          };
+          break;
+
+        case 'decompress':
+          if (args.length >= 2) {
+            await decompress(args[0], args[1]);
+          } else {
+            console.log('Invalid input. Please specify both the source file path and destination file path');
+          };
           break;
       }
       rl.prompt();
