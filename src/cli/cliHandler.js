@@ -7,6 +7,8 @@ import read from '../file-operations/read.js';
 import create from '../file-operations/create.js';
 import rn from '../file-operations/rename.js';
 import copy from '../file-operations/copy.js';
+import move from '../file-operations/move.js';
+import remove from '../file-operations/remove.js';
 
 const cliHandler = (username) => {
   const rl = createInterface({
@@ -24,9 +26,11 @@ const cliHandler = (username) => {
         case 'ls':
           await listDirContents();
           break;
+
         case 'up':
           goUp();
           break;
+
         case 'cd':
           if (args.length) {
             changeDir(args.join(' '));
@@ -34,6 +38,7 @@ const cliHandler = (username) => {
             console.log('Invalid input. Please specify a directory path');
           }
           break;
+
         case 'cat':
           if (args.length) {
             await read(args.join(' '));
@@ -41,6 +46,7 @@ const cliHandler = (username) => {
             console.log('Invalid input. Please specify a file path');
           };
           break;
+
         case 'add':
           if (args.length) {
             await create(args.join(' '));
@@ -48,6 +54,7 @@ const cliHandler = (username) => {
             console.log('Invalid input. Please specify a file name');
           };
           break;
+
         case 'rn':
           if (args.length >= 2) {
             await rn(args[0], args[1]);
@@ -55,11 +62,28 @@ const cliHandler = (username) => {
             console.log('Invalid input. Please specify both the current file path and new file name');
           };
           break;
+
         case 'cp':
           if (args.length >= 2) {
             await copy(args[0], args[1]);
           } else {
             console.log('Invalid input. Please specify both the current file path and new file directory');
+          };
+          break;
+
+        case 'mv':
+          if (args.length >= 2) {
+            await move(args[0], args[1]);
+          } else {
+            console.log('Invalid input. Please specify both the current file path and new file directory');
+          };
+          break;
+
+        case 'rv':
+          if (args.length) {
+            await remove(args.join(' '));
+          } else {
+            console.log('Invalid input. Please specify a file path');
           };
           break;
       }
