@@ -6,6 +6,7 @@ import changeDir from '../dir-operations/changeDir.js';
 import read from '../file-operations/read.js';
 import create from '../file-operations/create.js';
 import rn from '../file-operations/rename.js';
+import copy from '../file-operations/copy.js';
 
 const cliHandler = (username) => {
   const rl = createInterface({
@@ -52,6 +53,13 @@ const cliHandler = (username) => {
             await rn(args[0], args[1]);
           } else {
             console.log('Invalid input. Please specify both the current file path and new file name');
+          };
+          break;
+        case 'cp':
+          if (args.length >= 2) {
+            await copy(args[0], args[1]);
+          } else {
+            console.log('Invalid input. Please specify both the current file path and new file directory');
           };
           break;
       }
