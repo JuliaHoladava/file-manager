@@ -1,0 +1,21 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "FileManager with Node.js API",
+  "main": "index.js",
+  "scripts": {
+    "script": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JuliaHoladava/file-manager.git"
+  },
+  "author": "Julia Holadava",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuliaHoladava/file-manager/issues"
+  },
+  "homepage": "https://github.com/JuliaHoladava/file-manager#readme"
+}
