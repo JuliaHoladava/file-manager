@@ -5,6 +5,7 @@ import goUp from '../dir-operations/goUp.js';
 import changeDir from '../dir-operations/changeDir.js';
 import read from '../file-operations/read.js';
 import create from '../file-operations/create.js';
+import rn from '../file-operations/rename.js';
 
 const cliHandler = (username) => {
   const rl = createInterface({
@@ -44,6 +45,13 @@ const cliHandler = (username) => {
             await create(args.join(' '));
           } else {
             console.log('Invalid input. Please specify a file name');
+          };
+          break;
+        case 'rn':
+          if (args.length >= 2) {
+            await rn(args[0], args[1]);
+          } else {
+            console.log('Invalid input. Please specify both the current file path and new file name');
           };
           break;
       }
