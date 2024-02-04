@@ -9,6 +9,11 @@ import rn from '../file-operations/rename.js';
 import copy from '../file-operations/copy.js';
 import move from '../file-operations/move.js';
 import remove from '../file-operations/remove.js';
+import printEOL from '../system-info/printEOL.js';
+import printHost from '../system-info/printHost.js';
+import printHomeDir from '../system-info/printHomeDir.js';
+import printSystemUserName from '../system-info/printSystemUserName.js';
+import printCPUArch from '../system-info/printCPUArch.js';
 
 const cliHandler = (username) => {
   const rl = createInterface({
@@ -85,6 +90,28 @@ const cliHandler = (username) => {
           } else {
             console.log('Invalid input. Please specify a file path');
           };
+          break;
+
+        case 'os':
+          args.forEach(arg => {
+            switch (arg) {
+              case '--EOL':
+                printEOL();
+                break;
+              case '--cpus':
+                printHost();
+                break;
+              case '--homedir':
+                printHomeDir();
+                break;
+              case '--username':
+                printSystemUserName();
+                break;
+              case '--architecture':
+                printCPUArch();
+                break;
+            }
+          })
           break;
       }
       rl.prompt();
